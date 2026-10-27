@@ -1,0 +1,16 @@
+{
+  "name": "경영·금융 임용 행성 지도",
+  "short_name": "임용 행성 지도",
+  "description": "2027학년도 중등 임용 경영·금융 개념 마인드맵",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#FFFFFF",
+  "theme_color": "#8FC9A3",
+  "lang": "ko",
+  "icons": [
+    { "src": "icon.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
