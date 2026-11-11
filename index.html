@@ -805,55 +805,67 @@ body{
 /* 분야 목록 위의 「영역」 제목 숨김 — 아래 묶음 이름으로 충분 */
 .rail h3{display:none}
 
-/* ---------- v5.3 제목 고정 + 중단원·소단원 메뉴 ---------- */
-.tocbar{position:sticky;top:0;z-index:20;margin:-6px -14px 0;padding:6px 14px 8px;
+/* ---------- v5.4 제목 고정 + 목차 창 (C안) ---------- */
+.tocbar{position:sticky;top:0;z-index:20;margin:-6px -14px 0;padding:6px 14px 10px;
   background-color:var(--bg);
   background-image:linear-gradient(to right,var(--grid) 1px,transparent 1px),linear-gradient(to bottom,var(--grid) 1px,transparent 1px);
-  background-size:30px 30px;background-attachment:fixed;
-  transition:box-shadow .15s ease}
+  background-size:30px 30px;background-attachment:fixed}
 .tocbar.is-stuck{border-bottom:3px solid var(--line);box-shadow:0 4px 0 var(--sh)}
 .tocbar .head{margin:0}
 .tocbar.is-stuck .head h1{font-size:28px;-webkit-text-stroke-width:2.5px;text-shadow:3px 3px 0 var(--edge);padding:0}
-
-.toc-row{display:flex;align-items:center;gap:8px;overflow-x:auto;overscroll-behavior-x:contain;
-  scrollbar-width:thin;scrollbar-color:var(--peri) transparent;padding:6px 2px 8px}
-.toc-row[hidden]{display:none}
-.toc-lab{flex:none;font-family:var(--display);font-size:16px;color:var(--brandTxt);padding:0 4px 0 2px}
-
-/* 중단원 */
-.toc-chip{flex:none;display:flex;align-items:center;gap:7px;max-width:280px;
-  background:var(--card);color:var(--ink);border:2.5px solid var(--line);border-radius:999px;
-  padding:4px 14px 4px 5px;font-family:var(--sans);font-size:13.5px;font-weight:700;line-height:1.3;
-  white-space:nowrap;box-shadow:3px 3px 0 var(--sh);cursor:pointer;
+.tc-line{display:flex;align-items:center;gap:10px;margin-top:6px}
+.tc-open{flex:none;border:2.5px solid var(--line);background:var(--indigo);color:#fff;border-radius:999px;
+  padding:6px 16px;font:400 16px/1.2 var(--display);box-shadow:3px 3px 0 var(--edge);cursor:pointer;
   transition:transform .06s ease,box-shadow .06s ease}
-.toc-chip:active{transform:translateY(3px);box-shadow:none}
-.toc-chip .toc-t{overflow:hidden;text-overflow:ellipsis}
+.tc-open[aria-expanded="true"]{background:var(--card);color:var(--brandTxt);box-shadow:3px 3px 0 var(--sh)}
+.tc-where{flex:1;min-width:0;display:flex;align-items:center;gap:8px;background:none;border:0;padding:4px 2px;
+  font:500 14px/1.35 var(--sans);color:var(--ink2);text-align:left;cursor:pointer;overflow:hidden}
+.tc-where b{color:var(--brandTxt);font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:3em}
+.tc-where .tc-sec{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:3em}
+.tc-dom{flex:none;font-family:var(--display);font-size:15px;color:var(--brandTxt)}
+.tc-sep{flex:none;font-weight:800}
 .toc-n{flex:none;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;
   background:var(--periL);color:var(--brandTxt);font-size:11.5px;font-weight:800}
-.toc-chip[aria-current="true"]{background:var(--indigo);color:#fff;box-shadow:3px 3px 0 var(--edge)}
-.toc-chip[aria-current="true"] .toc-n{background:#fff;color:var(--indigo)}
+.tc-nav{flex:none;display:flex;gap:6px}
+.tc-step{width:34px;height:34px;border-radius:50%;border:2.5px solid var(--line);background:var(--card);
+  color:var(--brandTxt);font-size:12px;box-shadow:3px 3px 0 var(--sh);cursor:pointer;
+  transition:transform .06s ease,box-shadow .06s ease}
+.tc-open:active,.tc-step:active{transform:translateY(3px);box-shadow:none}
 
-/* 소단원 */
-.toc-secs{gap:4px;border-top:2px dashed var(--line);padding-top:7px}
-.toc-sc{flex:none;white-space:nowrap;background:none;border:0;border-radius:8px;
-  padding:5px 10px;font-family:var(--sans);font-size:13px;font-weight:600;color:var(--ink2);cursor:pointer}
-.toc-sc::before{content:"";display:inline-block;width:11px;height:11px;margin-right:5px;vertical-align:-1px;
-  background:var(--spark) center/contain no-repeat;opacity:.35}
-.toc-sc:hover{background:var(--soft);color:var(--ink)}
-.toc-sc[aria-current="true"]{background:var(--periL);color:var(--brandTxt);font-weight:800}
-.toc-sc[aria-current="true"]::before{opacity:1}
+/* 목차 창: 고정 줄 아래에 떠서 본문을 밀지 않음 */
+.tc-pop{position:absolute;left:14px;right:14px;top:calc(100% - 4px);z-index:5;
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:8px;
+  background:var(--card);border:3px solid var(--line);border-radius:12px;box-shadow:6px 6px 0 var(--sh);padding:8px}
+.tc-pop[hidden]{display:none}
+.tc-col{max-height:min(58vh,520px);overflow-y:auto;overscroll-behavior:contain;display:grid;gap:2px;align-content:start;padding-right:2px}
+.tc-secs{border-left:2px dashed var(--line);padding-left:8px}
+.tc-it{display:flex;align-items:flex-start;gap:8px;width:100%;text-align:left;background:none;
+  border:2px solid transparent;border-radius:9px;padding:7px 9px;font:600 14px/1.4 var(--sans);color:var(--ink);cursor:pointer}
+.tc-it:hover{background:var(--soft)}
+.tc-it[aria-current="true"]{background:var(--periL);border-color:var(--line);color:var(--brandTxt);font-weight:800}
+.tc-it.s{font-size:13.5px;padding:6px 9px}
+.tc-it.s::before{content:"";flex:none;width:12px;height:12px;margin-top:4px;background:var(--spark) center/contain no-repeat;opacity:.4}
+.tc-it.s[aria-current="true"]::before{opacity:1}
+.tc-top{font-size:12.5px;font-weight:800;color:var(--brandTxt);padding:5px 9px}
+.tc-top::before{content:"↑";font-weight:900}
+.tc-sh{font-size:12px;font-weight:800;color:var(--ink2);padding:4px 9px 2px;line-height:1.4}
+.tc-dh{font-family:var(--display);font-size:15px;color:var(--brandTxt);padding:8px 9px 2px}
+.tc-dh:first-child{padding-top:2px}
 
 @media (max-width:820px){
-  .tocbar{margin:-4px -13px 0;padding:4px 13px 6px}
+  .tocbar{margin:-4px -13px 0;padding:4px 13px 8px}
   .tocbar.is-stuck .head h1{font-size:21px;-webkit-text-stroke-width:2px;text-shadow:2px 2px 0 var(--edge)}
   .tocbar.is-stuck .head h1::before,.tocbar.is-stuck .head h1::after{display:none}
-  .toc-chip{max-width:210px;font-size:13px}
-  .toc-sc{font-size:12.5px;padding:4px 8px}
+  .tc-line{gap:7px}
+  .tc-open{padding:5px 13px;font-size:15px}
+  .tc-where{font-size:13px;gap:6px}
+  .tc-where .tc-sep,.tc-where .tc-sec{display:none}
+  .tc-step{width:32px;height:32px}
+  .tc-pop{left:13px;right:13px;grid-template-columns:1fr}
+  .tc-cards{max-height:26vh}
+  .tc-secs{max-height:30vh;border-left:0;border-top:2px dashed var(--line);padding:8px 0 0}
 }
-@media (prefers-reduced-motion:reduce){
-  .tocbar,.toc-chip{transition:none}
-  .toc-chip:active{transform:none}
-}
+@media (prefers-reduced-motion:reduce){.tc-open,.tc-step{transition:none}.tc-open:active,.tc-step:active{transform:none}}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 </head>
@@ -1248,7 +1260,7 @@ window.openSearch=open;
 })();
 </script>
 <script>
-/* ===== 목차 v2 — 큰 제목 아래 중단원·소단원 메뉴, 제목과 함께 위에 고정 =====
+/* ===== 목차 v3 (C안) — 제목 고정 + 「목차」 창(왼쪽 중단원 · 오른쪽 소단원) =====
    기존 코드는 건드리지 않고 render() 뒤에 이어 붙입니다. */
 (function(){
   const strip=s=>s.replace(/<[^>]+>/g,'').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&').replace(/\s+/g,' ').trim();
@@ -1257,7 +1269,9 @@ window.openSearch=open;
   N.forEach(n=>{H4[n.id]=[...n.h.matchAll(/<h4>([\s\S]*?)<\/h4>/g)].map(m=>strip(m[1]))});
   const main=document.getElementById('main');
   const cur={card:null,sec:null};
-  let bar=null;
+  let bar=null, view=null, open=false;
+  const list=()=>N.filter(x=>st.dom==='all'||x.d===st.dom);
+  const numOf=id=>{const n=N.find(x=>x.id===id);return n?N.filter(x=>x.d===n.d).findIndex(x=>x.id===id)+1:''};
 
   function tagSections(){
     document.querySelectorAll('#view .entry').forEach(e=>{
@@ -1267,48 +1281,50 @@ window.openSearch=open;
   }
 
   function build(){
-    bar=null;
+    bar=null; open=false;
     if(st.view!=='notes')return;
-    const view=document.getElementById('view');
-    const head=view.querySelector(':scope > .head'); if(!head)return;
+    const head=document.querySelector('#view > .head'); if(!head)return;
     bar=document.createElement('div'); bar.className='tocbar';
     head.before(bar); bar.append(head);
     bar.insertAdjacentHTML('beforeend',
-      '<nav class="toc-row toc-cards" aria-label="중단원"></nav>'+
-      '<nav class="toc-row toc-secs" aria-label="소단원"></nav>');
-    tagSections();
-    cur.card=null; cur.sec=null;
-    spy(true);
+      '<div class="tc-line"><button type="button" class="tc-open" aria-expanded="false">📑 목차</button>'+
+      '<button type="button" class="tc-where" aria-label="목차 열기"></button>'+
+      '<span class="tc-nav"><button type="button" class="tc-step" data-step="-1" aria-label="이전 소단원">◀</button>'+
+      '<button type="button" class="tc-step" data-step="1" aria-label="다음 소단원">▶</button></span></div>'+
+      '<div class="tc-pop" hidden><div class="tc-col tc-cards"></div><div class="tc-col tc-secs"></div></div>');
+    tagSections(); cur.card=null; cur.sec=null; spy(true);
   }
 
-  function keepVisible(el,row){
-    if(!el)return;
-    const er=el.getBoundingClientRect(),rr=row.getBoundingClientRect();
-    if(er.left<rr.left+24||er.right>rr.right-24) row.scrollLeft+=er.left-rr.left-(rr.width-er.width)/2;
-  }
-
-  function fill(force){
+  function where(){
     if(!bar)return;
-    const first=N.find(x=>st.dom==='all'||x.d===st.dom);
-    const n=N.find(x=>x.id===cur.card)||first; if(!n)return;
-    const d=n.d;
-    const cr=bar.querySelector('.toc-cards'), sr=bar.querySelector('.toc-secs');
-    if(force||cr.dataset.d!==d){
-      cr.dataset.d=d;
-      const cards=N.filter(x=>x.d===d);
-      cr.innerHTML=(st.dom==='all'?`<span class="toc-lab">${DOM[d]}</span>`:'')+
-        cards.map((c,i)=>`<button type="button" class="toc-chip" data-toc="${c.id}" title="${esc(c.t)}"><span class="toc-n">${i+1}</span><span class="toc-t">${esc(c.t)}</span></button>`).join('');
-    }
-    cr.querySelectorAll('.toc-chip').forEach(b=>b.setAttribute('aria-current',String(b.dataset.toc===n.id)));
-    if(force||sr.dataset.c!==n.id){
-      sr.dataset.c=n.id;
-      sr.innerHTML=H4[n.id].map((t,k)=>`<button type="button" class="toc-sc" data-toc="${n.id}|${k}">${esc(t)}</button>`).join('');
-      sr.hidden=!H4[n.id].length;
-      sr.scrollLeft=0;
-    }
-    sr.querySelectorAll('.toc-sc').forEach((b,k)=>b.setAttribute('aria-current',String(n.id===cur.card&&k===cur.sec)));
-    keepVisible(cr.querySelector('[aria-current="true"]'),cr);
-    keepVisible(sr.querySelector('[aria-current="true"]'),sr);
+    const n=N.find(x=>x.id===cur.card)||list()[0]; if(!n)return;
+    const sec=cur.card===n.id&&cur.sec!=null?H4[n.id][cur.sec]:null;
+    bar.querySelector('.tc-where').innerHTML=
+      (st.dom==='all'?`<span class="tc-dom">${DOM[n.d]}</span>`:'')+
+      `<span class="toc-n">${numOf(n.id)}</span><b>${esc(n.t)}</b>`+(sec?`<span class="tc-sep">›</span><span class="tc-sec">${esc(sec)}</span>`:'');
+  }
+
+  function fillPop(){
+    if(!bar)return;
+    const ls=list(); if(!view||!ls.some(x=>x.id===view))view=cur.card||ls[0].id;
+    const item=n=>`<button type="button" class="tc-it" data-view="${n.id}" aria-current="${n.id===view}"><span class="toc-n">${numOf(n.id)}</span><span>${esc(n.t)}</span></button>`;
+    bar.querySelector('.tc-cards').innerHTML= st.dom==='all'
+      ? GROUPS.map(([g,ks])=>ks.map(k=>`<div class="tc-dh">${DOM[k]}</div>`+N.filter(x=>x.d===k).map(item).join('')).join('')).join('')
+      : ls.map(item).join('');
+    const v=N.find(x=>x.id===view);
+    bar.querySelector('.tc-secs').innerHTML=
+      `<div class="tc-sh">${esc(v.t)}</div>`+
+      `<button type="button" class="tc-it tc-top" data-toc="${v.id}">카드 처음으로</button>`+
+      H4[v.id].map((t,k)=>`<button type="button" class="tc-it s" data-toc="${v.id}|${k}" aria-current="${v.id===cur.card&&k===cur.sec}">${esc(t)}</button>`).join('');
+  }
+
+  function setOpen(v){
+    if(!bar)return; open=v;
+    const pop=bar.querySelector('.tc-pop'); pop.hidden=!v;
+    bar.querySelector('.tc-open').setAttribute('aria-expanded',String(v));
+    if(v){view=cur.card; fillPop();
+      pop.querySelectorAll('.tc-col').forEach(c=>{const a=c.querySelector('[aria-current="true"]');
+        c.scrollTop=a?a.offsetTop-c.offsetTop-(c.clientHeight-a.offsetHeight)/2:0;});}
   }
 
   let tick=false;
@@ -1318,40 +1334,56 @@ window.openSearch=open;
       tick=false;
       if(!bar||!bar.isConnected)return;
       bar.classList.toggle('is-stuck',main.scrollTop>8);
-      const line=bar.getBoundingClientRect().bottom+40;
+      const line=bar.querySelector('.tc-line').getBoundingClientRect().bottom+44;
       let card=null,sec=null;
       document.querySelectorAll('#view .entry').forEach(e=>{if(e.getBoundingClientRect().top<=line)card=e});
       if(card) card.querySelectorAll('.body h4').forEach((h,k)=>{if(h.getBoundingClientRect().top<=line)sec=k});
       const id=card?card.id.slice(1):null;
-      const changed=force===true||id!==cur.card||sec!==cur.sec;
-      cur.card=id; cur.sec=sec;
-      if(changed)fill(force===true);
+      if(force===true||id!==cur.card||sec!==cur.sec){cur.card=id;cur.sec=sec;where();}
     });
   }
 
   function scrollTo(el){
-    const target=()=>el.getBoundingClientRect().top-(bar?bar.getBoundingClientRect().bottom:main.getBoundingClientRect().top)-12;
-    main.scrollTop+=target();
-    // 제목이 작아지며 높이가 바뀌므로 한 번 더 맞춤
-    requestAnimationFrame(()=>{ if(bar)bar.classList.toggle('is-stuck',main.scrollTop>8);
-      requestAnimationFrame(()=>{ main.scrollTop+=target(); spy(true); }); });
+    const t=()=>el.getBoundingClientRect().top-bar.querySelector('.tc-line').getBoundingClientRect().bottom-16;
+    main.scrollTop+=t();
+    requestAnimationFrame(()=>{bar.classList.toggle('is-stuck',main.scrollTop>8);
+      requestAnimationFrame(()=>{main.scrollTop+=t();spy(true);});});
   }
-
   function go(key){
     const [id,k]=key.split('|');
+    setOpen(false);
     if(st.fold[id]===false){st.fold[id]=true;render(true);}
     const el=document.getElementById(k==null?'n'+id:'s'+id+'-'+k);
-    if(el)scrollTo(el);
+    if(el&&bar)scrollTo(el);
+  }
+  function step(d){
+    const flat=[]; list().forEach(n=>{flat.push(n.id);H4[n.id].forEach((_,k)=>flat.push(n.id+'|'+k))});
+    let i=flat.indexOf(cur.card==null?flat[0]:(cur.sec==null?cur.card:cur.card+'|'+cur.sec));
+    if(i<0)i=0; i=Math.max(0,Math.min(flat.length-1,i+d));
+    go(flat[i]);
   }
 
   document.addEventListener('click',e=>{
-    const b=e.target.closest('[data-toc]'); if(!b)return;
-    e.preventDefault(); go(b.dataset.toc);
+    if(!bar)return;
+    const b=e.target.closest('button');
+    if(b&&bar.contains(b)){
+      if(b.classList.contains('tc-open')||b.classList.contains('tc-where')){setOpen(!open);return}
+      if(b.dataset.step){step(+b.dataset.step);return}
+      if(b.dataset.view){view=b.dataset.view;fillPop();return}
+      if(b.dataset.toc){go(b.dataset.toc);return}
+    }
+    if(open&&!e.target.closest('.tc-pop'))setOpen(false);
   });
+  document.addEventListener('mouseover',e=>{
+    if(!open)return; const b=e.target.closest('.tc-cards .tc-it');
+    if(b&&b.dataset.view!==view){view=b.dataset.view;
+      bar.querySelectorAll('.tc-cards .tc-it').forEach(x=>x.setAttribute('aria-current',String(x.dataset.view===view)));
+      const keep=bar.querySelector('.tc-cards').scrollTop; fillPop(); bar.querySelector('.tc-cards').scrollTop=keep;}
+  });
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&open)setOpen(false)});
 
   const _render=render;
-  render=function(k){ _render(k); build(); };
-
+  render=function(k){_render(k);build();};
   main.addEventListener('scroll',()=>spy(),{passive:true});
   window.addEventListener('resize',()=>spy(true));
   build();
