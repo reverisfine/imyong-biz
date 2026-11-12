@@ -866,6 +866,14 @@ body{
   .tc-secs{max-height:30vh;border-left:0;border-top:2px dashed var(--line);padding:8px 0 0}
 }
 @media (prefers-reduced-motion:reduce){.tc-open,.tc-step{transition:none}.tc-open:active,.tc-step:active{transform:none}}
+
+/* ---------- v5.5 교육과정 원문 링크 ---------- */
+.nav a.navlink{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border:2.5px solid transparent;
+  border-radius:9px;font-family:var(--display);font-size:16.5px;letter-spacing:.01em;color:var(--ink);text-decoration:none;
+  margin-top:6px;border-top:2px dashed var(--line);border-radius:0 0 9px 9px;padding-top:12px}
+.nav a.navlink:hover{background:var(--soft)}
+.tnav a.navlink{display:inline-flex;align-items:center;border:2.5px solid var(--line);border-radius:999px;padding:4px 11px;
+  font-family:var(--display);font-size:15.5px;color:var(--brandTxt);text-decoration:none;background:var(--card)}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 </head>
@@ -1374,7 +1382,7 @@ window.openSearch=open;
     }
     if(open&&!e.target.closest('.tc-pop'))setOpen(false);
   });
-  document.addEventListener('mouseover',e=>{
+  document.addEventListener('mousemove',e=>{
     if(!open)return; const b=e.target.closest('.tc-cards .tc-it');
     if(b&&b.dataset.view!==view){view=b.dataset.view;
       bar.querySelectorAll('.tc-cards .tc-it').forEach(x=>x.setAttribute('aria-current',String(x.dataset.view===view)));
@@ -1387,6 +1395,24 @@ window.openSearch=open;
   main.addEventListener('scroll',()=>spy(),{passive:true});
   window.addEventListener('resize',()=>spy(true));
   build();
+})();
+
+</script>
+<script>
+/* ===== 교육과정 원문 링크 — 메뉴에 덧붙임 ===== */
+(function(){
+  const inClaude=/claude/.test(location.hostname);
+  const href=inClaude?'https://claude.ai/artifact/UfVp9jbzn9BW9UYfS15i7w':'curriculum.html';
+  const ext=inClaude?' target="_blank" rel="noopener"':'';
+  function add(){
+    const n=document.getElementById('nav');
+    if(n&&!n.querySelector('.navlink'))n.insertAdjacentHTML('beforeend',`<a class="navlink" href="${href}"${ext}><span>📘 교육과정 원문</span></a>`);
+    const t=document.getElementById('tnav');
+    if(t&&!t.querySelector('.navlink'))t.insertAdjacentHTML('beforeend',`<a class="navlink" href="${href}"${ext}>📘 원문</a>`);
+  }
+  const _rail=renderRail;
+  renderRail=function(){_rail();add();};
+  add();
 })();
 
 </script>
