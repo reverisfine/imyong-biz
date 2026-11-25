@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#2F3191">
+<title>금융자산 분류·평가 한 장 정리 · 경영·금융 임용 공부장</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+
+body{margin:0}
+a{color:#4338CA}a:hover{color:#312E81}
+
+html{background:#E8E7F7}
+body{font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;color:#22235A}
+.top{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px;background:#2F3191;color:#FFFFFF}
+.top a{color:#FFFFFF;text-decoration:none;font-weight:700;font-size:15px;border:1.5px solid rgba(255,255,255,.7);border-radius:999px;padding:8px 16px;min-height:44px;box-sizing:border-box;display:inline-flex;align-items:center}
+.top a:hover{background:rgba(255,255,255,.15);color:#FFFFFF}
+.top span{font-size:14px;opacity:.9}
+.stage{margin:16px auto 32px;overflow:hidden;box-shadow:0 4px 24px rgba(34,35,90,.12);border-radius:8px}
+.poster{transform-origin:top left}
+@media print{.top{display:none}.stage{box-shadow:none;margin:0}}
+
+@media (max-width:760px){
+ .stage{width:auto!important;height:auto!important;margin:10px 8px 24px!important;border-radius:10px}
+ .poster{transform:none!important;width:auto!important;height:auto!important;padding:22px 16px 28px!important;gap:28px!important}
+ .poster [style*="grid-template-columns"]{grid-template-columns:minmax(0,1fr)!important}
+ .poster [style*="repeat(4, minmax(0, 1fr))"],.poster [style*="repeat(5, minmax(0, 1fr))"]{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .poster [style*="96px minmax(0, 1fr)"]{grid-template-columns:72px minmax(0,1fr)!important}
+ .poster h1{font-size:34px!important}
+ .poster h2{font-size:24px!important}
+ .poster svg{max-width:100%;height:auto}
+ .poster header svg{max-width:240px;margin:0 auto}
+ .poster .tb{display:block;overflow-x:auto;font-size:13.5px}
+ .poster .tb td.k{white-space:normal}
+ .top{padding:8px 12px}
+ .top span{font-size:12.5px;text-align:right}
+}
+
+</style>
+</head>
+<body>
+<nav class="top"><a href="../index.html">← 공부장으로</a><span>재무회계 · 금융자산</span></nav>
+<div class="stage">
+<div class="poster" data-w="1080" style="width: 1080px; min-height: 1880px; box-sizing: border-box; padding: 56px 56px 48px; background: #F6F5FB; color: #1E1B3A; font-family: 'Noto Sans KR', sans-serif; display: flex; flex-direction: column; gap: 28px">
+
+<header style="display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
+<span style="font-size: 15px; font-weight: 700; padding: 5px 12px; border: 2px solid #1E1B3A; border-radius: 999px; background: #FFFFFF">재무회계 · 제4절 금융자산</span>
+<span style="font-size: 15px; font-weight: 700; padding: 5px 12px; border: 2px solid #1E1B3A; border-radius: 999px; background: #4338CA; color: #FFFFFF">2006 기출 9번</span>
+</div>
+<h1 style="margin: 0; font-size: 54px; font-weight: 900; letter-spacing: -0.02em; line-height: 1.15">금융자산 분류·평가 한눈에</h1>
+<p style="margin: 0; font-size: 19px; color: #4B4766">K-IFRS 1109 기준 · 분류 → 평가 → 처분까지</p>
+</header>
+
+<section style="background: #FFFFFF; border: 2.5px solid #1E1B3A; border-radius: 16px; box-shadow: 5px 5px 0 #1E1B3A; padding: 28px; display: flex; flex-direction: column; gap: 18px">
+<h2 style="margin: 0; font-size: 26px; font-weight: 900">① 분류: 두 가지 질문</h2>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 20px; font-weight: 900; color: #4338CA">채무상품 (사채·대여금)</div>
+<div style="background: #EEF0FF; border: 2px solid #1E1B3A; border-radius: 12px; padding: 12px 14px; font-size: 16px; line-height: 1.5"><b>Q1. 현금흐름이 원리금만?</b><br>아니요 → <b>FVPL</b></div>
+<div style="background: #EEF0FF; border: 2px solid #1E1B3A; border-radius: 12px; padding: 12px 14px; font-size: 16px; line-height: 1.5"><b>Q2. 사업모형은?</b></div>
+<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px">
+<div style="border: 2px solid #1E1B3A; border-radius: 10px; padding: 10px 6px; text-align: center; font-size: 14px; line-height: 1.45">수취만<br><b style="font-size: 20px">AC</b></div>
+<div style="border: 2px solid #1E1B3A; border-radius: 10px; padding: 10px 6px; text-align: center; font-size: 14px; line-height: 1.45">수취+매도<br><b style="font-size: 20px">FVOCI</b></div>
+<div style="border: 2px solid #1E1B3A; border-radius: 10px; padding: 10px 6px; text-align: center; font-size: 14px; line-height: 1.45">그 외<br><b style="font-size: 20px">FVPL</b></div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 20px; font-weight: 900; color: #4338CA">지분상품 (주식)</div>
+<div style="background: #EEF0FF; border: 2px solid #1E1B3A; border-radius: 12px; padding: 12px 14px; font-size: 16px; line-height: 1.5"><b>원칙</b> → <b>FVPL</b></div>
+<div style="background: #EEF0FF; border: 2px solid #1E1B3A; border-radius: 12px; padding: 12px 14px; font-size: 16px; line-height: 1.5"><b>단기매매 아님</b> → 최초 인식 때 <b>FVOCI 선택 가능</b><br><span style="color: #4B4766">한 번 지정하면 취소 불가</span></div>
+<div style="border: 2px dashed #1E1B3A; border-radius: 12px; padding: 12px 14px; font-size: 15px; line-height: 1.55; color: #4B4766">AC = 상각후원가측정<br>FVOCI = 기타포괄손익-공정가치측정<br>FVPL = 당기손익-공정가치측정</div>
+</div>
+</div>
+</section>
+
+<section style="background: #FFFFFF; border: 2.5px solid #1E1B3A; border-radius: 16px; box-shadow: 5px 5px 0 #1E1B3A; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+<h2 style="margin: 0; font-size: 26px; font-weight: 900">② 평가·처분 비교표</h2>
+<table style="width: 100%; border-collapse: collapse; font-size: 16px; line-height: 1.45">
+<thead>
+<tr style="background: #1E1B3A; color: #FFFFFF">
+<th style="padding: 11px 10px; text-align: left; font-weight: 700">구분</th>
+<th style="padding: 11px 10px; text-align: left; font-weight: 700">평가손익</th>
+<th style="padding: 11px 10px; text-align: left; font-weight: 700">거래원가</th>
+<th style="padding: 11px 10px; text-align: left; font-weight: 700">처분 시 재분류</th>
+<th style="padding: 11px 10px; text-align: left; font-weight: 700">손상</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom: 1.5px solid #CFCBE3">
+<td style="padding: 11px 10px; font-weight: 900">AC</td>
+<td style="padding: 11px 10px">평가 안 함 (유효이자율법)</td>
+<td style="padding: 11px 10px">원가에 가산</td>
+<td style="padding: 11px 10px">—</td>
+<td style="padding: 11px 10px">인식 O</td>
+</tr>
+<tr style="border-bottom: 1.5px solid #CFCBE3; background: #F4F5FF">
+<td style="padding: 11px 10px; font-weight: 900">FVOCI 채무</td>
+<td style="padding: 11px 10px">기타포괄손익</td>
+<td style="padding: 11px 10px">원가에 가산</td>
+<td style="padding: 11px 10px"><b style="color: #1D4ED8">재분류 O</b></td>
+<td style="padding: 11px 10px">인식 O</td>
+</tr>
+<tr style="border-bottom: 1.5px solid #CFCBE3">
+<td style="padding: 11px 10px; font-weight: 900">FVOCI 지분</td>
+<td style="padding: 11px 10px">기타포괄손익</td>
+<td style="padding: 11px 10px">원가에 가산</td>
+<td style="padding: 11px 10px"><b style="color: #B45309">재분류 X</b><br><span style="font-size: 14px; color: #4B4766">이익잉여금 대체는 가능</span></td>
+<td style="padding: 11px 10px">인식 X</td>
+</tr>
+<tr style="background: #F4F5FF">
+<td style="padding: 11px 10px; font-weight: 900">FVPL</td>
+<td style="padding: 11px 10px"><b>당기손익</b></td>
+<td style="padding: 11px 10px"><b>당기비용</b></td>
+<td style="padding: 11px 10px">—</td>
+<td style="padding: 11px 10px">인식 X</td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section style="background: #FFFFFF; border: 2.5px solid #1E1B3A; border-radius: 16px; box-shadow: 5px 5px 0 #1E1B3A; padding: 28px; display: flex; flex-direction: column; gap: 18px">
+<h2 style="margin: 0; font-size: 26px; font-weight: 900">③ 2006 9번 핵심: 평가는 이렇게</h2>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 18px; font-weight: 900">A주식 · 단기매매증권 <span style="font-weight: 500; color: #4B4766">(현 FVPL)</span></div>
+<div style="display: flex; align-items: center; gap: 8px; font-size: 16px">
+<div style="border: 2px solid #1E1B3A; border-radius: 10px; padding: 8px 10px; text-align: center; line-height: 1.35">전기말<br><b>720,000</b></div>
+<svg width="28" height="16" viewBox="0 0 28 16" aria-hidden="true"><path d="M2 8h22M18 3l6 5-6 5" fill="none" stroke="#1E1B3A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<div style="border: 2px solid #1E1B3A; border-radius: 10px; padding: 8px 10px; text-align: center; line-height: 1.35">당기말<br><b>680,000</b></div>
+</div>
+<div style="font-size: 16px; line-height: 1.55">평가손실 <b>40,000</b> → <b>손익계산서</b><br><span style="color: #4B4766">취득원가(850,000)와 비교하지 않음</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 18px; font-weight: 900">B주식 · 매도가능증권 <span style="font-weight: 500; color: #4B4766">(현 FVOCI)</span></div>
+<div style="display: flex; align-items: center; gap: 6px; font-size: 15px">
+<div style="border: 2px solid #1E1B3A; border-radius: 10px; padding: 8px 8px; text-align: center; line-height: 1.35">취득<br><b>1,400,000</b></div>
+<svg width="22" height="16" viewBox="0 0 22 16" aria-hidden="true"><path d="M2 8h16M13 3l5 5-5 5" fill="none" stroke="#1E1B3A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<div style="border: 2px solid #1E1B3A; border-radius: 10px; padding: 8px 8px; text-align: center; line-height: 1.35">03말<br><b>1,200,000</b></div>
+<svg width="22" height="16" viewBox="0 0 22 16" aria-hidden="true"><path d="M2 8h16M13 3l5 5-5 5" fill="none" stroke="#1E1B3A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<div style="border: 2px solid #1E1B3A; border-radius: 10px; padding: 8px 8px; text-align: center; line-height: 1.35">04말<br><b>1,500,000</b></div>
+</div>
+<div style="font-size: 16px; line-height: 1.55">상승 300,000 = 손실 <b>200,000 상계</b> + 이익 <b>100,000</b> → <b>자본</b></div>
+</div>
+</div>
+<div style="background: #FFF4E5; border: 2px solid #B45309; border-radius: 12px; padding: 14px 16px; font-size: 16px; line-height: 1.6"><b style="color: #92400E">함정 2개</b><br>1. 비교 기준은 <b>전기말 공정가치</b> (취득원가 아님)<br>2. 평가이익 300,000 한 줄로 쓰면 오답 → <b>기존 평가손실 먼저 상계</b></div>
+</section>
+
+<section style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px">
+<div style="background: #FFFFFF; border: 2.5px solid #1E1B3A; border-radius: 16px; box-shadow: 5px 5px 0 #1E1B3A; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 22px; font-weight: 900">④ 옛 용어 → 지금 용어</h2>
+<div style="font-size: 16px; line-height: 1.5; display: flex; flex-direction: column; gap: 8px">
+<div>단기매매증권 → <b>FVPL 금융자산</b></div>
+<div>매도가능증권 → <b>FVOCI 금융자산</b></div>
+<div>자본조정(평가손익) → <b>기타포괄손익누계액</b></div>
+<div>대차대조표 → <b>재무상태표</b></div>
+</div>
+</div>
+<div style="background: #1E1B3A; color: #FFFFFF; border: 2.5px solid #1E1B3A; border-radius: 16px; box-shadow: 5px 5px 0 #4338CA; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 22px; font-weight: 900">⑤ 2027 출제 예상</h2>
+<div style="font-size: 15px; color: #D9D6F0">2010 · 2016 B7 이후 10년 미출제 · C등급</div>
+<div style="font-size: 16px; line-height: 1.55; display: flex; flex-direction: column; gap: 6px">
+<div>1. 사업모형·현금흐름으로 <b>분류 서술</b></div>
+<div>2. FVPL vs FVOCI → <b>당기순이익·총포괄이익 비교</b></div>
+<div>3. 처분 시 <b>재분류 O/X</b> (채무 vs 지분)</div>
+</div>
+</div>
+</section>
+
+<footer style="font-size: 14px; color: #4B4766">경영·금융 임용 공부장 · 재무회계 금융자산 요약</footer>
+</div>
+</div>
+<script>
+(function(){
+  var ps=[].slice.call(document.querySelectorAll('.poster'));
+  function fit(){
+    ps.forEach(function(p){
+      var st=p.parentNode;
+      if(document.documentElement.clientWidth<=760){p.style.transform='';st.style.width='';st.style.height='';return}
+      var W=+p.dataset.w,H=p.offsetHeight,avail=document.documentElement.clientWidth-24,k=Math.min(1,avail/W);
+      p.style.transform='scale('+k+')';st.style.width=(W*k)+'px';st.style.height=(H*k)+'px';
+    });
+  }
+  fit();addEventListener('resize',fit);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
+})();
+</script>
+</body>
+</html>
